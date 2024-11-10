@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        header{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ececec;
+            padding-left: 40px;
+            padding-right: 40px;
+            height: 10vh;
+        }
+        header .left_side{
+            width: 35%;
+        }
+        header .left_side img{
+            width: 100px;
+            pointer-events: none;
+        }
+        header .left_side ul{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .left_side ul li{
+            list-style-type: none;
+
+        }header .left_side ul li a{
+            text-decoration: none;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 18px;
+            color: black;
+        }
+        #home1{
+            display: none;
+            background-color: #fff;
+            width: 120px;
+            height: auto;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            box-shadow: 4px 4px 15px #ececec;
+        }
+        #home1 li{
+            padding: 10px;
+            width: 100%;
+        }
+        #home1 li:hover{
+            background-color: black;
+            color: #fff;
+        }
+        header ul li:nth-child(2):hover #home1{
+            display: block;
+        }
+        #home1 li:hover a{
+            color: #fff;
+        }
+        #home2{
+            display: flex;
+            visibility: hidden;
+            background-color: #fff;
+            width: 60%;
+            border-radius: 5px;
+            position: absolute;
+            justify-content: space-between;
+            padding: 20px;
+            z-index: 1;
+            box-shadow: 4px 4px 15px #ececec;
+        }
+        #home2 #home{
+            /* width: 200px; */
+            flex-direction: column;
+        }
+        #home2 #home li{
+            transition: all .5s;
+            /* width: 200px; */
+        }
+        #home2 #home li{
+            padding: 10px;
+            width: 160px;
+        }
+        #home2 #home li a{
+            color: grey;
+        }
+        #home2 #home li:hover{
+            background-color: black;
+        }
+        #home2 #home li:hover a{
+            color: #fff;
+        }
+        header ul li:nth-child(3):hover #home2{
+            visibility: visible;
+        }
+        header .left_side ul li a:hover{
+            color: #999;
+            z-index: 1;
+        }
+        .container{
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ececec;
+            height: 60vh;
+        }
+        .container .home{
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 40vh;
+        }
+        .container .home .details{
+            width: 45%;
+        }
+        .container .home .details #main{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 20px;
+            color: grey;
+            word-spacing: 5px;
+            text-transform: uppercase;
+        }
+        .container .home .details h1{
+            font-size: 60px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .container .home .details p{
+            color: #666;
+        }
+        .container .home .details button{
+            width: 140px;
+            /* height: 30px; */
+            padding: 10px;
+            background: black;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 18px;
+            outline: none;transition: all .5s;
+            border: none;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        .container .home .details button:hover{
+            background-color: rgb(233, 230, 230);
+            color: black;
+        }
+        .container .home .image{
+            width: 45%;
+        }
+        .container .home .image img{
+            width: 100%;
+            height: auto;
+        }
+        .login_area{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+            margin-bottom: 60px;
+        }
+        .login_area .login{
+            width: 50%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .login_area .login h1{
+            font-size: 30px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .login_area .login p{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .login_area .login form{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .login_area .login form input{
+            width: 10%;
+            margin: 10px;
+            height: 50px;
+            background-color: #efefef;
+            border-radius: 6px;
+            text-align: center;
+            border: none;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .login_area .login form #button{
+            width: 50%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: rgb(225, 225, 225);
+            border: none;
+            outline: none;
+            padding: 10px;
+            color: rgb(0, 0, 0);
+            font-size: 18px;
+        }
+        .footer{
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: #ececec;
+            padding-top: 80px;
+            margin-top: 50px;
+        }
+        .footer .footer_inner{
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            min-height: 50vh;
+            justify-content: space-between;
+        }
+        .footer .footer_inner .links{
+            width: 20%;
+        }
+        .footer .footer_inner .links h1{
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+        #phone{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 20px;
+
+        }
+        .footer .footer_inner .links ul{
+            display: block;
+            margin-top: 20px;
+        }
+        .footer .footer_inner .links ul li{
+            padding: 5px;
+            list-style: none;
+        }
+        .footer .footer_inner .links ul li a{
+            text-decoration: none;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: grey;
+        }
+        .footer .footer_inner .links ul li:hover a{
+            color: black;
+        }
+        .footer .footer_inner .links .input{
+            width: 100%;
+            height: 30px;
+            border: 1px solid rgb(209, 209, 209);
+            outline: none;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .footer .footer_inner .links input{
+            width: 80%;
+            padding-left: 10px;
+            height: 100%;
+            outline: none;
+            border: none;
+        }
+        .footer .footer_inner .links button{
+            width: 20%;
+            background: black;
+            height: 100%;
+            outline: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer .footer_inner .links button i{
+            color: #fff;
+        }
+        .footer .footer_inner .links h4{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: 20px;
+        }
+        .footer .footer_inner .links #icon{
+            display: flex;
+            flex-direction: row;
+            width: 65%;
+            justify-content: space-between;
+        }
+        .copyright{
+            padding: 20px;
+            padding-left: 5%;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left_side">
+            <ul id="header">
+                <li><img src="pngwing.com-3.png" alt=""></li>
+                <li><a href="#">Home <i class="fa fa-angle-down"></i></a>
+                    <ul id="home1">
+                        <li><a href="E-Commerce Store.html">Home 1</a></li>
+                        <li><a href="#">Home 2</a></li>
+                        <li><a href="#">Home 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>
+                    <div id="home2">
+                        <div class="div1">
+                            <ul id="home">
+                                <li><a href="#">Shop</a></li>
+                                <li><a href="E-Commerce Store.html">Demo Link 1</a></li>
+                                <li><a href="#">Demo Link 2</a></li>
+                                <li><a href="#">Demo Link 3</a></li>
+                                <li><a href="#">Demo Link 4</a></li>
+                            </ul>
+                        </div>
+                        <div class="div1">
+                            <ul id="home">
+                                <li><a href="404Page.html">404 Page</a></li>
+                                <li><a href="Forgot Password.html">Password</a></li>
+                                <li><a href="Search.html">Search Page</a></li>
+                            </ul>
+                        </div>
+                        <div class="div1">
+                            <ul id="home">
+                                <li><a href="Signup.html">Sign Up</a></li>
+                                <li><a href="Login.html">Sign In</a></li>
+                                <li><a href="#">Terms & Condition</a></li>
+                                <li><a href="Forgot Password.html">Forgot Password</a></li>
+                                <li><a href="MPinScreen.html">Email confirmation</a></li>
+                                <li><a href="ConfirmPassword.html">Reset Password</a></li>
+                            </ul>
+                        </div>
+                        <div class="div1">
+                            <ul id="home">
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Style log</a></li>
+                                <li><a href="#">Changelo </a></li>
+                                <li><a href="#">License</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="right_side">
+            <ul id="right">
+                <input type="text">
+                <i class="fa fa-user"></i>
+                <i class="fa fa-trash"></i>
+            </ul>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="home">
+                <div class="details">
+                    <h1>Password Recovery</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum dolores, similique iure asperiores dignissimos illo esse nihil totam ipsam ipsa! Magnam.</p>
+                </div>
+                <div class="image">
+                    <img src="sofas.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="login_area">
+        <div class="login">
+            <h1>Enter your six digit MPIN code</h1>
+            <p style="color: grey;">Check your email and enter your six digit code to continue.</p>
+            <form action="ConfirmPassword.html">
+                <input type="tel" required>
+                <input type="tel" required>
+                <input type="tel" required>
+                <input type="tel" required>
+                <input type="tel" required>
+                <input type="tel" required>
+                <p style="width: 100%; display: flex; justify-content: flex-end; color:grey; margin: 10px;margin-right: 65px; align-items: flex-end;">Didn't get the code? <a href="#">Resend again</a></p>
+                <input type="submit" value="Submit" id="button">
+            </form>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer_inner">
+            <div class="links">
+                <h1>Farnic furniture</h1>
+                <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: grey; margin-bottom: 10px;margin-top: 25px;">Centeral City, Main bazar khanewal, Pakistan</p>
+                <p id="phone">+92 3185016473</p>
+                <a href="#"><p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: grey; margin-top: 10px;">www.example.com</p></a>
+            </div>
+            <div class="links">
+                <h1>Company</h1>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Our blog Post</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Shop</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h1>Information</h1>
+                <ul>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="#">Style guide</a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#">Changelog </a></li>
+                    <li><a href="#">License</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h1>Newsletter</h1>
+                <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: grey; margin-top: 10px;">Subscribe our newsletter and get our all latest information and offers</p>
+                <div class="input">
+                    <input type="email" required placeholder="Email here">
+                    <button><i class="fa fa-arrow-right"></i></button>
+                </div>
+                <h4>Follow us on</h4>
+                <ul id="icon">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">
+        ©CopyRights holder all rights Reserved 2021-2024
+    </div>
+</body>
+</html>
